@@ -1,17 +1,29 @@
 package org.taskmanagementSystem;
 
+import org.taskmanagementSystem.Entity.Task;
+
+import java.time.LocalDate;
+import java.util.List;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        TaskManagementSystem tms = new TaskManagementSystem();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        tms.createAccount("Vishal", "Vishal@123");
+        tms.logInUser("Vishal", "Vishal@123");
+
+        tms.createTask("Workout" , "Workout tips", "Workout ade", LocalDate.of(2024,12,10));
+        tms.createTask("Study" , "Study tips", "Study ade", LocalDate.of(2024,12,20));
+
+
+        Task subtask = tms.createSubtask("Workout", "Coding","Coding of DSA", "Coding description" ,LocalDate.of(2025,1,19));
+
+        List<Task> userTasks = tms.getUserWorkload("Vishal");
+        for (Task task : userTasks) {
+            System.out.println("Task for Vishal: " + task.getTaskId() + " have deadlines: " + task.getDeadline());
         }
+
     }
 }
